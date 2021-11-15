@@ -59,7 +59,7 @@
     <Compile Include="Comand\BaseComand\LambdaCommand.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Manager.cs" />
-    <Compile Include="ViewModel\AutorisationViewmodel.cs" />
+    <Compile Include="ViewModel\AutorisationViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewmodel.cs" />
     <Page Include="View\Autorisation.xaml">
@@ -74,6 +74,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModel\MessageData.cs" />
     <Compile Include="View\Autorisation.xaml.cs">
       <DependentUpon>Autorisation.xaml</DependentUpon>
     </Compile>

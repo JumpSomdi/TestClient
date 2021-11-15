@@ -7,11 +7,12 @@
       xmlns:vm="clr-namespace:TestClient.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page1">
-    <Page.DataContext>
-        <vm:AutorisationViewmodel/>
-    </Page.DataContext>
-   
+      Title="Page1"
+      DataContext="{DynamicResource mainVM}">
+    <d:Page.DataContext>
+        <vm:AutorisationViewModel/>
+    </d:Page.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -24,7 +25,7 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <ItemsControl ItemsSource="{Binding Path=msg}" Background="Wheat">
+            <ItemsControl ItemsSource="{Binding Messages}" Background="Wheat">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -36,10 +37,12 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            
+
             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom">
-                <TextBox Text="{Binding Path=Message}" Margin="10,1,1,1" VerticalAlignment="Bottom" Width="519"/>
-                <Button Command="{Binding Path=SendMessage}" Width="29"/>
+                <TextBox x:Name="textBox" Text="{Binding Message}" Margin="10,1,1,1" VerticalAlignment="Bottom" Width="519"/>
+                <Button Command="{Binding SendMessage, Mode=OneWay}" Width="29"
+                        CommandParameter="{Binding Text, ElementName=textBox}"
+                        IsDefault="True"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="0">

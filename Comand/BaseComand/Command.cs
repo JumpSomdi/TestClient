@@ -3,12 +3,21 @@ using System.Windows.Input;
 
 namespace TestClient.Comand.BaseComand
 {
-    abstract class Command : ICommand
+    public abstract class Command : ICommand
     {
-        public event EventHandler CanExecuteChanged
+        public event EventHandler CanExecuteChanged;
+
+        private readonly EventHandler requerySuggested;
+
+        protected Command()
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            requerySuggested = (_, __) => RaiseCanExecuteChanged();
+            CommandManager.RequerySuggested += requerySuggested;
+        }
+
+        public void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public abstract bool CanExecute(object parameter);
